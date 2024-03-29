@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import React, {ReactNode} from "react";
+import ServiceWorkerRegister from "@/lib/service-worker/ServiceWorkerRegister";
+// import {FetchRegister} from "@/app/fetch.config";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +36,11 @@ export default function RootLayout({
       <meta name='theme-color' content='#fff'/>
       <link rel='icon' href='/icons/favicon-32x32.png' sizes={'any'}/>
     </head>
-    <body className={inter.className}>{children}</body>
+    <body className={inter.className}>
+      <ServiceWorkerRegister>
+        {children}
+      </ServiceWorkerRegister>
+    </body>
     </html>
   );
 }
